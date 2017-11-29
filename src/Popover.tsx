@@ -202,7 +202,7 @@ export default class Popover extends React.PureComponent<PopoverProps, PopoverSt
       toValue: show ? 1 : 0,
       duration: 300,
       easing: show ? Easing.out(Easing.back(1.70158)) : Easing.inOut(Easing.quad),
-      useNativeDriver: true,
+      useNativeDriver: Platform.OS === 'ios',
     }).start(doneCallback);
   };
 
