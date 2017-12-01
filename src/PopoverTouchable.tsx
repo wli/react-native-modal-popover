@@ -1,10 +1,11 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { findNodeHandle, MeasureOnSuccessCallback, NativeModules, View } from 'react-native';
+import { findNodeHandle, MeasureOnSuccessCallback, NativeModules, View, ViewStyle } from 'react-native';
 import { Rect } from './PopoverGeometry';
 
 export interface Props {
   onPopoverDisplayed?: () => any;
+  style?: ViewStyle,
 }
 
 export interface State {
@@ -16,6 +17,7 @@ class PopoverTouchable extends React.PureComponent<Props, State> {
 
   static propTypes = {
     onPopoverDisplayed: PropTypes.func,
+    style: PropTypes.any,
   };
 
   constructor(props: Props) {
@@ -66,7 +68,7 @@ class PopoverTouchable extends React.PureComponent<Props, State> {
       throw new Error('Popover touchable must have two children and the second one must be Popover');
     }
     return (
-      <View>
+      <View style={this.props.style}>
         {
           React.cloneElement(children[0] as React.ReactElement<any>, {
             ref: this.setRef,
